@@ -1,44 +1,60 @@
 def read_input(filepath):
     file = open(filepath, 'r')
     return file.readlines()
-    
+
+
+lines = read_input("day4/input.txt")
+crates = {
+    "1": ["D","M","S","Z","R","F","W","N"],
+    "2": ["W","P","Q", "G", "S"],
+    "3": ["W", "R","V", "Q", "F", "N", "J", "C"],
+    "4": ["F", "Z", "P", "C", "G", "D", "L"],
+    "5": ["T", "P", "S"],
+    "6": ["H", "D", "F","W", "R", "L"],
+    "7": ["Z", "N", "D", "C"],
+    "8": ["W", "N", "R", "F", "V", "S", "J", "Q"],
+    "9": ["R", "M", "S", "G", "Z", "W", "V"],
+}
 
 def part1():
-    lines = read_input("day4/input.txt")
-    found = 0
+    # MADE THe INPUT FORMAT FROM 'move X from a to b' INTO --> X-a:b
     for line in lines:
-        [r1,r2] = line.split(",")
-        [a,b] = r1.split("-")
-        [x,y] = r2.split("-")
+        splitted = line.split("-")
+        n = splitted[0]
 
-        a = int(a)
-        b = int(b)
-        x = int(x)
-        y = int(y)
-
-        if (a >= x and b <= y) or (x >= a and y <= b):
-            found += 1
+        [_from, _to] = splitted[1].split(":")
+        _to = _to.replace("\n", "")
+        for i in range(int(n)):
+            crates[_to].append(crates[_from].pop())
+        
 
 
-    print(found)
+
+    answer = ""
+    for s in crates:
+        answer += (crates[s][-1])
+    print("PART1: ",answer)
+
 
 def part2():
-    lines = read_input("day4/input.txt")
-    found = 0
+    # MADE THe INPUT FORMAT FROM 'move X from a to b' INTO --> X-a:b
     for line in lines:
-        [r1,r2] = line.split(",")
-        [a,b] = r1.split("-")
-        [x,y] = r2.split("-")
+        splitted = line.split("-")
+        n = splitted[0]
 
-        a = int(a)
-        b = int(b)
-        x = int(x)
-        y = int(y)
+        [_from, _to] = splitted[1].split(":")
 
-        if(a in range(x,y+1) or b in range(x,y+1) or x in range(a,b+1) or y in range(a,b+1)):
-            found += 1
+        temp_arr = []
+        for i in range(int(n)):
+            temp_arr.append(crates[_from].pop())
+        
+        crates[_to.replace("\n", "")] += reversed(temp_arr)
 
 
-    print(found)
+    answer = ""
+    for s in crates:
+        answer += (crates[s][-1])
+    print("PART2: ",answer)
 
-part2()
+
+part1()
