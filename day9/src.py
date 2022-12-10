@@ -25,7 +25,7 @@ def get_positions(n_knots):
                 x_diff = (positions[idx-1][0] - positions[idx][0])
                 y_diff = (positions[idx-1][1] - positions[idx][1])
 
-                if abs((positions[idx-1][0] - positions[idx][0])) + abs(positions[idx-1][1] - positions[idx][1]) < 3:
+                if abs(x_diff) + abs(y_diff) < 3:
                     positions[idx][0] += int(x_diff/ 2)
                     positions[idx][1] += int(y_diff/ 2)
                 else:
@@ -33,17 +33,9 @@ def get_positions(n_knots):
                     min_dist = min(x_diff,y_diff, key=abs)
                     divider = abs(min_dist) if min_dist != 0 else 1
 
-                    positions[idx][0] += round(((x_diff) / 2) + min_dist/divider)
-                    positions[idx][1] += round(((y_diff) / 2) + min_dist/divider)
-
-                    # x: 1 + 1*0.1 
-# # # #
-# # # H
-# 2 1 #
-
-# # # H
-# # # 1
-# 2 . #         
+                    positions[idx][0] += round(((x_diff) / 2) + min_dist/divider*0.1)
+                    positions[idx][1] += round(((y_diff) / 2) + min_dist/divider*0.1)
+     
             visited.add(tuple(positions[len(positions)-1]))
 
     print("Answer: {}".format(len(visited)))
