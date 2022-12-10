@@ -2,6 +2,8 @@ def read_input(filepath):
     file = open(filepath, 'r')
     return file.read().splitlines()
 
+
+
 def part1():
     rows = read_input("day8/input.txt")
 
@@ -123,5 +125,3 @@ def part2():
 
 part1()
 part2()
-
-
