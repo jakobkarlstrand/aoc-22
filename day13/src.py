@@ -28,7 +28,6 @@ def compare_lists(l1,l2):
         d = (l2 - l1)
         return d/abs(d) if d != 0 else 0
     
-
     
     if type(l1) != list:
         l1 = [l1]
@@ -37,10 +36,9 @@ def compare_lists(l1,l2):
     _idx = 0
 
 
+    for left,right in zip(l1,l2):
 
-    while _idx < len(l1) and _idx < len(l2):
-
-        cmp = compare_lists(l1[_idx],l2[_idx])
+        cmp = compare_lists(left,right)
         if cmp != 0:
             return cmp
         _idx+=1
@@ -76,12 +74,9 @@ def p2():
     input = parse_input()
     divider_packets = [[[2]],[[6]]]
 
-    all_packets = []
+    all_packets = [*divider_packets]
     for pair in input:
         all_packets += pair
-
-    all_packets += divider_packets
-
 
     for i in range(len(all_packets)-1):
         for j in range(i,len(all_packets)):
