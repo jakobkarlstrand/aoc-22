@@ -35,7 +35,7 @@ def p1():
 
     occupied = parse_input()
     ORIGIN = (500,0)
-    last_stone = max([c[1] for c in occupied]) + 2
+    last_stone = max([c[1] for c in occupied])+2
 
     idx = 0
     answer = 0
