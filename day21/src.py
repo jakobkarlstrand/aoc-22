@@ -66,6 +66,7 @@ def p1():
             
 
     print("ANSWER P1: ",answer)
+    return answer
 
                         
 def p2():
@@ -73,16 +74,12 @@ def p2():
     was_negative = False
     
     
-    MAX_GUESS = 1000*6745394553620
+    MAX_GUESS = p1()
     found = False
     h_low,h_mid,h_high = 0,MAX_GUESS//2, MAX_GUESS
-    none_found = False
+    
     l_root,_,r_root = root['operation'].split(" ")
     while not found:
-
-        if h_low == h_mid or h_mid == h_high:
-            none_found = True
-            break
         copy_monkeys = deepcopy(monkeys)
         copy_monkeys['humn']['operation'] = h_mid
         
