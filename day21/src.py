@@ -83,11 +83,7 @@ def p2():
         copy_monkeys = deepcopy(monkeys)
         copy_monkeys['humn']['operation'] = h_mid
         
-        
-    
-        
 
-        
         while True:
 
             
